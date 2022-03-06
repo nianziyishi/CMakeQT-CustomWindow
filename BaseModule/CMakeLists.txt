@@ -1,0 +1,57 @@
+﻿# CMakeList.txt: 子级 BaseModule 项目文件
+# 
+#
+
+# ==================配置项目信息==================
+
+# 项目名称
+project(BaseModule LANGUAGES CXX)
+
+# 设置生成动态库(默认静态库)
+set(BUILD_SHARED_LIBS ON)
+
+# 引入Qt库
+find_package(Qt5 COMPONENTS Core Widgets Gui REQUIRED)
+
+# 查找当前目录BaseWidget下的所有源文件，将名称保存到 DIR_SRCS 变量中
+aux_source_directory(./BaseWidget DIR_SRCS)
+
+# 设置MOC文件
+set(MOC_SOURCES
+	./BaseWidget/qbasewindow.h
+	./BaseWidget/icon/icon.qrc
+	./BaseWidget/light/lightstyle.qrc
+	./BaseWidget/dark/darkstyle.qrc
+)
+
+# 添加工程源文件到库
+add_library(${PROJECT_NAME} ${DIR_SRCS} ${MOC_SOURCES})
+
+# 设置并引用头文件路径
+set(INCLUDE_PATH
+	${PROJECT_SOURCE_DIR}
+	${PROJECT_SOURCE_DIR}/BaseWidget
+)
+target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_PATH})
+
+# 定义导出符号的宏定义
+if(MSVC)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC BASEMODULE_LIB)
+	# 定义库类型的宏定义
+	if(BUILD_SHARED_LIBS)
+		target_compile_definitions(${PROJECT_NAME} PUBLIC SHARED_LIB)
+	endif()
+endif()
+
+
+# =================链接依赖库==================
+
+# 将Qt的库链接至程序
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Qt5::Gui)
+
+
+# ==================打印环境信息==================
+
+# 打印项目路径
+message( STATUS "${PROJECT_NAME} 项目目录 = ${PROJECT_SOURCE_DIR}" )
+message( STATUS "${PROJECT_NAME} 输出目录 = ${OUTPUT_DIRECTORY}" )
