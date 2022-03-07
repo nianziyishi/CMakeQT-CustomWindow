@@ -26,7 +26,7 @@ protected:
 	/// @param event 鼠标双击事件
 	virtual void mouseDoubleClickEvent(QMouseEvent* event);
 	
-	/// @brief 拖拽移动效果
+	/// @brief 鼠标按下--拖拽移动效果
 	/// @param event 鼠标按下事件
 	virtual void mousePressEvent(QMouseEvent* event);
 	

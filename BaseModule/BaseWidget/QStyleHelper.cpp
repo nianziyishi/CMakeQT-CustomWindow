@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QApplication>
 
-//QString QStyleHelper::defaultWindowStyle = ":/lightstyle.qss";
-QString QStyleHelper::defaultWindowStyle = ":/darkstyle.qss";
+QString QStyleHelper::defaultWindowStyle = ":/lightstyle.qss";
+//QString QStyleHelper::defaultWindowStyle = ":/darkstyle.qss";
 
 QStyleHelper::QStyleHelper()
 {

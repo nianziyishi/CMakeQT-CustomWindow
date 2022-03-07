@@ -13,23 +13,19 @@
 #include "QBasePara.h"
 #include "QBaseConfig.h"
 
-class TitleBarPrivate {
+class TitleBarPrivate 
+{
 public:
-	//const QString icon_min = ":/icon_window_minimize.png";
-	//const QString icon_max = ":/icon_window_maximize.png";
-	//const QString icon_close = ":/icon_window_close.png";
-	//const QString icon_restore = ":/icon_window_restore.png";
-
 	bool mouse_left_pressing = false;	//鼠标左键按下状态记录
 	QPoint move_start_point;			//窗口移动时起始位置记录
-	QMainWindow* window;				//获取主窗口指针，默认为QMainWindow，如果是QWidget请修改
-	QLabel* label_icon;					//窗口图标
-	QLabel* label_spacer;				//图标和标题的间隔
-	QLabel* label_title;				//窗口标题
-	QWidget* widget_placeholder;		//标题中部占位
-	QToolButton* toolButton_min;		//最小化
-	QToolButton* toolButton_max;		//最大化
-	QToolButton* toolButton_close;		//关闭
+	QMainWindow* window = Q_NULLPTR;				//获取主窗口指针，默认为QMainWindow，如果是QWidget请修改
+	QLabel* label_icon = Q_NULLPTR;					//窗口图标
+	QLabel* label_spacer = Q_NULLPTR;				//图标和标题的间隔
+	QLabel* label_title = Q_NULLPTR;				//窗口标题
+	QWidget* widget_placeholder = Q_NULLPTR;		//标题中部占位
+	QToolButton* toolButton_min = Q_NULLPTR;		//最小化
+	QToolButton* toolButton_max = Q_NULLPTR;		//最大化
+	QToolButton* toolButton_close = Q_NULLPTR;		//关闭
 };
 
 QBaseTitleBar::QBaseTitleBar(QWidget* parent) : QToolBar(parent)
@@ -97,6 +93,8 @@ QBaseTitleBar::~QBaseTitleBar()
 
 void QBaseTitleBar::mouseDoubleClickEvent(QMouseEvent* event)
 {
+	/// @brief 被双击--标题栏被双击，放大还原
+
 	if (Qt::LeftButton == event->button())
 	{
 		maximizeButtonClicked();
@@ -107,6 +105,8 @@ void QBaseTitleBar::mouseDoubleClickEvent(QMouseEvent* event)
 
 void QBaseTitleBar::mousePressEvent(QMouseEvent* event)
 {
+	/// @brief 鼠标按下--拖拽移动效果
+	
 	if (Qt::LeftButton == event->button())
 	{
 		mTitleBar->mouse_left_pressing = true;
@@ -118,6 +118,8 @@ void QBaseTitleBar::mousePressEvent(QMouseEvent* event)
 
 void QBaseTitleBar::mouseReleaseEvent(QMouseEvent* event)
 {
+	/// @brief 鼠标抬起--拖拽移动效果
+	
 	if (Qt::LeftButton == event->button())
 	{
 		mTitleBar->mouse_left_pressing = false;
@@ -128,6 +130,8 @@ void QBaseTitleBar::mouseReleaseEvent(QMouseEvent* event)
 
 void QBaseTitleBar::mouseMoveEvent(QMouseEvent* event)
 {
+	/// @brief 鼠标移动--拖拽移动效果
+	
 	if (mTitleBar->mouse_left_pressing)
 	{
 		//移动窗体位置
@@ -145,6 +149,8 @@ void QBaseTitleBar::mouseMoveEvent(QMouseEvent* event)
 
 bool QBaseTitleBar::eventFilter(QObject* obj, QEvent* event)
 {
+	/// @brief 事件过滤--修改标题、图标等操作
+	
 	switch (event->type())
 	{
 	case QEvent::WindowTitleChange: //标题修改
@@ -177,6 +183,8 @@ bool QBaseTitleBar::eventFilter(QObject* obj, QEvent* event)
 
 void QBaseTitleBar::maximizeButtonClicked()
 {
+	/// @brief 最大化按钮被点击槽
+	
 	if (mWindowButtonType & QBasePara::TypeTitleBar::Maximize)
 	{
 		Qt::WindowStates state = mTitleBar->window->windowState();
@@ -194,6 +202,8 @@ void QBaseTitleBar::maximizeButtonClicked()
 
 void QBaseTitleBar::setWindowButtonType(int _type)
 {
+	/// @brief 设置窗体按钮
+	
 	//没有按钮
 	if (_type == QBasePara::TypeTitleBar::None_TitleBar)
 	{
@@ -230,5 +240,7 @@ void QBaseTitleBar::setWindowButtonType(int _type)
 
 int QBaseTitleBar::getWindowButtonType()
 {
+	/// @brief 获取窗体按钮类型
+	
 	return mWindowButtonType;
 }

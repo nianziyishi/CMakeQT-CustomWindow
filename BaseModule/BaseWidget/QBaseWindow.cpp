@@ -145,7 +145,6 @@ void QBaseWindow::handleCloseEvent(bool& _isClose)
 void QBaseWindow::initData()
 {
 	/// @brief 初始化数据
-	this->setStyleSheet(this->styleSheet() + QString("%1#%2{border: 4px solid #346792;}").arg(this->metaObject()->className()).arg(this->objectName()));
 
 }
 

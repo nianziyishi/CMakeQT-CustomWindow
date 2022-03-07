@@ -3,19 +3,19 @@
 
 本项目的目的在于构建一个基于CMake跨平台开发环境的多模块的QT配置示例。  
 同时在其中内置了一个QT自定义窗体的基类。具体详细信息将会在后面逐一进行介绍。  
-如果代码中有不足之处，或者有更好的解决方法，欢迎随时联系[我](nianziyishi@foxmail.com)。  
+如果代码中有不足之处，或者有更好的解决方法，欢迎随时联系[我](mailto:nianziyishi@foxmail.com)。  
 假如此项目中的部分代码能够对您有一定的帮助，我会感到非常的荣幸。  
 
 The purpose of this project is to build a multi-module QT configuration example based on CMake cross-platform development environment.  
 A QT base class for custom window is built in. Detailed information will be introduced one by one later.  
-If there are any deficiencies in the code, or if you have a better solution. Please feel free to contact [me](nianziyishi@foxmail.com). 
+If there are any deficiencies in the code, or if you have a better solution. Please feel free to contact [me](mailto:nianziyishi@foxmail.com). 
 If some of the code in this project can be of some help to you, I will feel very honored  
 
 
 ## 基于CMake的特性
 
 - 支持windows、linux、macos。  
-- 支持QT的moc、uic、rcc编译。  
+- 支持qt的moc、uic、rcc编译。  
 - 支持使用visual studio在windows上开发调试。  
 - 支持使用visual studio远程连接linux开发调试。  
 
@@ -43,9 +43,11 @@ If some of the code in this project can be of some help to you, I will feel very
 - windos: 10.0.19042.985。  
 - linux: ubuntu-20.04, 5.13.0-30-generic, x86_64。  
 - vs2019: 16.11.10。  
-
+- qt: 5.15.2。  
 
 ## 编译方式
+
+首先需要在**CMakeQT-CustomWindow/CMakeLists.txt**文件中设置您的QT路径  
 
 ### 在Windows上编译
 
@@ -98,7 +100,7 @@ make
 ![调试1-windows](/Screenshots/调试1-windows.png)  
 ![调试2-linux](/Screenshots/调试2-linux.png)  
 
-安装Qt VS CMake Tools扩展工具，目前只有vs2019版本的。  
+为了操作方便，建议您安装Qt VS CMake Tools扩展工具，目前只有vs2019版本的。  
 安装该工具是为了在cmake项目模式下，使添加QT类和QT控件类的操作更方便。  
 
 ![添加qt类1](/Screenshots/添加qt类1.png)  
@@ -118,7 +120,7 @@ make
 ### 自定义窗体效果展示
 
 界面中所使用的qss文件[请参考](https://github.com/spyder-ide/qtsass)。  
-界面中所使用的图片资源暂不知道原作者是谁。  
+界面中所使用的图片资源暂不知道原作者是谁，如果有谁知道的话可以告诉我。  
 ![界面1-light](/Screenshots/界面1-light.png)  
 ![界面2-light](/Screenshots/界面2-light.png)  
 ![界面3-light](/Screenshots/界面3-light.png)  

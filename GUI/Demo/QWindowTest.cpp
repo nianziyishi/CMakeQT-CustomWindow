@@ -14,18 +14,17 @@ QWindowTest::QWindowTest(QWidget *parent)
 
 	initWindow();
 	initWidget();
-	qDebug() << "QWindowTest QWindowTest";
 }
 
 QWindowTest::~QWindowTest()
 {
-	qDebug() << "QWindowTest delete";
 	delete ui;
 }
 
-/// @brief 初始化窗体
 void QWindowTest::initWindow()
 {
+	/// @brief 初始化窗体
+
 	//设置窗体标题
 	setWindowTitle(QStringLiteral("自定义窗体"));
 	//设置窗体Icon
@@ -55,9 +54,10 @@ void QWindowTest::initWidget()
 
 }
 
-/// @brief 初始化数据
 void QWindowTest::initData()
 {
+	/// @brief 初始化数据
+
 	qDebug() << "QWindowTest InitData";
 
 	ui->label->setText(QString("QMainWindow:%1\nQWidget:%2").arg(sizeof(QMainWindow)).arg(sizeof(QWidget)));
@@ -115,7 +115,6 @@ void QWindowTest::on_PB_TestWindow_clicked()
 	QWindowTest* window = new QWindowTest();
 	window->showWindow(this);
 
-	qDebug() << "QWindowTest on_PB_TestWindow_clicked";
 }
 
 void QWindowTest::slots_HanldeTimeout()
